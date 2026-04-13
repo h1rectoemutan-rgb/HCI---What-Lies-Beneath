@@ -609,7 +609,7 @@ label arrest3:
 
 label end:
 
-    scene black screen
+    scene black 
     with fade 
 
     "Some secrets are better left beneath…"
