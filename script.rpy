@@ -473,7 +473,7 @@ label backyard:
             "I didn't notice barbwire at the garden. I scratched my arm on it":
                  $ suspicion -= 1
                  jump stay
-
+# 
     elif "Use the crowbar": 
         dm "Where did you go? We identified the body, it was the father."
         dm "What’s that on your hand?"
@@ -526,25 +526,36 @@ label shore:
     dm "You killed them, Morgan."
     menu: 
         "They buried my future, Miller. I just returned the favor.":
-            jump end 
+            $ suspicion += 2
+            jump check_suspicion
 
         "Too bad, Miller. I was always one step ahead of you.":
-            show smirk face of miller
-            jump escape 
+            show smirk face of miller                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            jump escapes
 
-label escape: 
+label check_suspicion: 
+    scene policestation
+    if suspicion >= 7:
+        "The police don't trust you anymore. They think you're helping the criminals."
+        jump fired 
+
+    elif suspicion >= 3:
+        "Miller looks at you with doubt. He lets you solve the case, but he’s watching your every move."
+        jump nextday
+
+    else:
+        "You’ve played it perfectly. Miller trusts you implicitly."
+        jump secrets 
+
+label fired: 
     scene policestation
 
-    ml "He’ll be gone for exactly ninety seconds. I designed my exit before I even walked into this building."
-    menu: 
-        "Click on the light switch.": 
-                #show black out 
-            dm "Get the backup generators on! Lee? LEE!"
-            jump end
+    dm "Hand it over, Lee. The badge. The gun."
+    ml "Miller, I can explain—"
+    dm "Save it for the hearing. You crossed a line, and now you're a liability."
 
-        "Exit": 
-            dm "Get the backup generators on! Lee? LEE!"
-            jump end
+    "GAME OVER"
+    jump end
 
 label nextday: 
 
@@ -575,7 +586,7 @@ label nextday:
     ml "Well…the fertilizer. It's a high-nitrogen rose fertilizer. Silas is the only one who ordered it. He used his own supplies as weights."
     ml "Or someone used Silas’s shed to frame him. It’s too convenient. I think we have the suspects, Miller."
 
-    dm "Okay, Morgan. Who do we bring in"
+    dm "Okay, Morgan. Who do we bring in?"
     menu: 
         "Executive Edward": 
             ml "I traced the post regarding the Belmonts’ escape, the IP showed that it was Edward."  
@@ -589,27 +600,55 @@ label nextday:
             ml "He had the earring and didn’t report anything to the police until now."
             jump arrest3
 
+    dm "We got our suspect, but it doesn't feel like a win."
+
 label arrest1: 
     scene handcuff
 
     ml "Case closed. Our killer is greedy. You do this kind thing for money?"
+    dm "Good job on the arrest, but don't think I've forgotten how you got there."
+    dm "I'll be watching your reports very closely from now on."
+    "ENDING: Case Closed (Conditional)."
     jump end
 
 label arrest2: 
     scene handcuff 
 
     dm "He has every reason to resent them but I don't think killing the whole family is reasonable."
+    dm "Good job on the arrest, but don't think I've forgotten how you got there."
+    dm "I'll be watching your reports very closely from now on."
+    "ENDING: Case Closed (Conditional)."
     jump end
 
 label arrest3: 
     scene handcuff 
     
     ml "I do wonder, what kind of family is the Belmont for him to do this. "
+    dm "Good job on the arrest, but don't think I've forgotten how you got there."
+    dm "I'll be watching your reports very closely from now on."
+    "ENDING: Case Closed (Conditional)."
     jump end
 
-label end:
+label secrets: 
+    scene policestation
 
+    dm "Clean work, Lee. I haven't seen an investigation that tight in years."
+    ml "Just doing my job, Miller."
+    dm "Dinner is on me tonight. You earned it."
+    "ENDING: Legendary Detective."
+    jump end 
+
+label escape:
     scene black 
+    with fade 
+
+    #HISS SOUND parang yung sa gas
+    #insert image of smoke
+    dm "DETECTIVE MORGAN"
+    "MORGAN"
+
+label end: 
+    scene black
     with fade 
 
     "Some secrets are better left beneath…"
