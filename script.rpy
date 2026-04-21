@@ -608,7 +608,7 @@ label arrest1:
     ml "Case closed. Our killer is greedy. You do this kind thing for money?"
     dm "Good job on the arrest, but don't think I've forgotten how you got there."
     dm "I'll be watching your reports very closely from now on."
-    "ENDING: Case Closed (Conditional)."
+    "ENDING: Case Closedss."
     jump end
 
 label arrest2: 
@@ -617,7 +617,7 @@ label arrest2:
     dm "He has every reason to resent them but I don't think killing the whole family is reasonable."
     dm "Good job on the arrest, but don't think I've forgotten how you got there."
     dm "I'll be watching your reports very closely from now on."
-    "ENDING: Case Closed (Conditional)."
+    "ENDING: Case Closed."
     jump end
 
 label arrest3: 
@@ -626,7 +626,7 @@ label arrest3:
     ml "I do wonder, what kind of family is the Belmont for him to do this. "
     dm "Good job on the arrest, but don't think I've forgotten how you got there."
     dm "I'll be watching your reports very closely from now on."
-    "ENDING: Case Closed (Conditional)."
+    "ENDING: Case Closed."
     jump end
 
 label secrets: 
